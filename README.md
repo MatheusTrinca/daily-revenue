@@ -11,7 +11,7 @@ an endpoint, parse, organize and present the data to the user.
 - Clone this repo using git clone, ssh below
 
 ```
-git clone <URL LINK HERE>
+git clone git@github.com:MatheusTrinca/daily-revenue.git
 ```
 
 - Install dependencies with yarn or npm
