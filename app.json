@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "Daily Revenue",
+    "slug": "daily-revenue",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1dfdc05b-db6b-4196-9054-e8fc9927c74e"
+      }
+    },
+    "android": {
+      "package": "com.matheustrinca.dailyrevenue"
+    },
+    "ios": {
+      "bundleIdentifier": "com.matheustrinca.dailyrevenue"
+    }
+  }
+}
