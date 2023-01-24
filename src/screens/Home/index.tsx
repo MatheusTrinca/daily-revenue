@@ -1,52 +1,23 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
 import { Header } from '../../components/containers/Header';
 import Select from '../../components/containers/Select';
 import DatePicker from '../../components/datepicker';
 import LoadingSpinner from '../../components/loading-spinner';
 import RevenueList from '../../components/containers/RevenueList';
-import { RevenueService } from '../../services/api/revenue/RevenueService';
-import { Revenue } from '../../models/Revenue';
 import { Container, ContentContainer, ModalView } from './styles';
+import { useRevenue } from '../../hooks/useRevenue';
 
 export const Home: React.FC = () => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [date, setDate] = useState<Date>();
-  const [revenue, setRevenue] = useState<Revenue>();
-  const [isLoading, setIsLoading] = useState(false);
+
+  const { revenue, isLoading } = useRevenue(date);
 
   const handleSetDate = useCallback((date: string) => {
     setDate(new Date(date));
     setShowDatePicker(false);
   }, []);
-
-  useEffect(() => {
-    if (date) {
-      if (date > new Date()) {
-        Alert.alert('Revenue', 'Please choose a date before the current one');
-        setDate(undefined);
-        setRevenue(undefined);
-        return;
-      }
-
-      setIsLoading(true);
-      RevenueService.getRevenueByDate(date)
-        .then(response => {
-          if (response instanceof Error) {
-            Alert.alert(
-              'Revenue',
-              'Error fetching data, please try again later.',
-            );
-            setDate(undefined);
-            return;
-          }
-          setRevenue(response);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
-  }, [date]);
 
   const renderContent = () => {
     if (isLoading) {
