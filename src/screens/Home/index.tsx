@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Alert, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { Header } from '../../components/containers/Header';
 import Select from '../../components/containers/Select';
 import DatePicker from '../../components/datepicker';
